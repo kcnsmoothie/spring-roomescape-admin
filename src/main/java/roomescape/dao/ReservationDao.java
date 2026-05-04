@@ -52,14 +52,14 @@ public class ReservationDao {
         );
     }
 
-    public Reservation save(Reservation reservation, ReservationTime reservationTime) {
+    public Reservation save(Reservation reservation) {
         Map<String, Object> params = new HashMap<>();
         params.put("name", reservation.getName());
         params.put("date", reservation.getDate());
-        params.put("time_id", reservationTime.getId());
+        params.put("time_id", reservation.getTime().getId());
 
         Long id = jdbcInsert.executeAndReturnKey(params).longValue();
-        return new Reservation(id, reservation.getName(), reservation.getDate(), reservationTime);
+        return new Reservation(id, reservation.getName(), reservation.getDate(), reservation.getTime());
     }
 
     public void delete(Long id) {

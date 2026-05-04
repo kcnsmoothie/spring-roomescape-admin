@@ -33,7 +33,7 @@ public class ReservationService {
                 time
         );
 
-        Reservation saved = reservationDao.save(reservation, time);
+        Reservation saved = reservationDao.save(reservation);
 
         return ReservationResponse.from(saved);
     }
